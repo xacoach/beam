@@ -136,6 +136,8 @@ public class FlinkExecutionEnvironments {
 
     applyLatencyTrackingInterval(flinkBatchEnv.getConfig(), options);
 
+    flinkBatchEnv.getConfig().disableClosureCleaner();
+
     return flinkBatchEnv;
   }
 
@@ -236,6 +238,8 @@ public class FlinkExecutionEnvironments {
     if (options.getAutoWatermarkInterval() != null) {
       flinkStreamEnv.getConfig().setAutoWatermarkInterval(options.getAutoWatermarkInterval());
     }
+
+    flinkStreamEnv.getConfig().disableClosureCleaner();
 
     configureStateBackend(options, flinkStreamEnv);
 
